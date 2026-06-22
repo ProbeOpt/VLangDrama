@@ -45,7 +45,7 @@ fn sort_map_by_value(m map[string]int, desc bool) []KV {
 
 // Helper function to match your previous logic
 fn get_new_ident(ident_i int) (string, int) {
-    alphabet := "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    alphabet := "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()`~{}[]:;'/\?<>,.|"
 
     if ident_i <= 0 || ident_i > alphabet.len {
         return '', 0
@@ -71,16 +71,21 @@ fn build_compression_map(bytepairs []string, _compressed string) string {
     pairs := sort_map_by_value(ref_table, true)
 
     for i, pair in pairs {
+        // i is count and pair is bytepair.
         // get_new_ident returns (string, int)
-        ident, success := get_new_ident(i + 1) // +1 because i is 0-indexed but our logic might expect 1-based
+        if pair.value > 1 { // only do if pair occurrences are more then 1.
+            ident, success := get_new_ident(i + 1) // +1 because i is 0-indexed but our logic might expect 1-based
 
-        if success == 0 {
-            break // Stop if we run out of characters (e.g., > 26)
+            if success == 0 {
+                break // Stop if we run out of characters (e.g., > 26)
+            }
+
+            println("${pair.key} -> ${ident} (which occurred ${pair.value} times.)")
+
+            compressed = compressed.replace(pair.key, ident)
+        } else {
+            println("skipping: ${pair.key} (which occurred only ${pair.value} time.)")
         }
-
-        // println("${pair.key} -> ${ident}")
-
-        compressed = compressed.replace(pair.key, ident)
     }
 
     return compressed
@@ -103,8 +108,8 @@ fn main() {
 
     orig_len := f64(original.len)
     comp_len := f64(compressed.len)
-    percent := (comp_len/orig_len) * 100.0
-    println("total compressed percentage: ${compressed.len}/${original.len} => ${percent}%")
-    println("before: ${original}\nafter: ${compressed}")
+    percent := ((orig_len/comp_len) * 100.0) - f64(100)
+    println("# total compressed percentage: ${original.len}/${compressed.len} => ${percent}%")
+    println("\n## before: ${original}\n## after: ${compressed}")
     return
 }
