@@ -5,3 +5,6 @@
 - - TOP-LEVEL STATEMENTS............
 
 ### I like v.
+
+- I even implemented `BPE` (using v-lang) in less then an 40min, It took me 1hr + ChatGpt to implement in `Odin`.
+- I dont like TOP-LEVEL STATEMENTS, they are mumbly-jumbly.
