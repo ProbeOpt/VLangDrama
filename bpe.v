@@ -43,23 +43,49 @@ fn sort_map_by_value(m map[string]int, desc bool) []KV {
 	return pairs
 }
 
+// Helper function to match your previous logic
 fn get_new_ident(ident_i int) (string, int) {
-    // v-lang's' strings are indexable directly, cool. But let's be safe with runes if we want characters.
-    ident_str := "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    alphabet := "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
-    // Check bounds first, to make sure this does not crash.
-    if ident_i == 0 {
+    if ident_i <= 0 || ident_i > alphabet.len {
         return '', 0
     }
 
-    if ident_i > ident_str.len {
-        return '', 0
-    }
-
-    to_char_ed := ident_str[ident_i - 1]
-
-    return to_char_ed.str(), 1
+    // V strings are byte arrays.
+    // ident_i is 1-based, so index is ident_i - 1
+    return alphabet[ident_i - 1].ascii_str(), 1
 }
+
+fn build_compression_map(bytepairs []string, _compressed string) string {
+    mut compressed := _compressed
+    mut ref_table := map[string]int{}
+
+    for x in bytepairs {
+        if ref_table[x] != 0 {
+            ref_table[x] += 1
+        } else {
+            ref_table[x] = 1
+        }
+    }
+
+    pairs := sort_map_by_value(ref_table, true)
+
+    for i, pair in pairs {
+        // get_new_ident returns (string, int)
+        ident, success := get_new_ident(i + 1) // +1 because i is 0-indexed but our logic might expect 1-based
+
+        if success == 0 {
+            break // Stop if we run out of characters (e.g., > 26)
+        }
+
+        // println("${pair.key} -> ${ident}")
+
+        compressed = compressed.replace(pair.key, ident)
+    }
+
+    return compressed
+}
+
 fn main() {
     original := "The quick brown fox jumps over the lazy dog. This is a sample text for training a Markov chain model. Markov chains are useful for predicting the next token based on the previous one. In a simple language model, we can use word transitions to generate new text that resembles the training data. Hello world from Odin programming language. This is fun and educational. Let's see what the model generates next. The model learns patterns from the training data to predict likely next words.".to_lower()
     mut compressed := original
@@ -73,37 +99,12 @@ fn main() {
     //     println(x) // Th \n e  \n qu
     // }
 
-    mut ref_table := map[string]int{}
+    compressed = build_compression_map(bytepairs, compressed)
 
-    for x in bytepairs {
-        if ref_table[x] != 0 {
-            ref_table[x] += 1
-        } else {
-            ref_table[x] = 1
-        }
-    }
-
-    sorted_bps := sort_map_by_value(ref_table, true)
-
-    // test: really, cool, dude! THIS IS REALLY BETTER THEN GO!!!!!!
-    // for x, y in sorted_bps {
-    //     println("${x} -> ${y}")
-    // }
-
-    // test: println(get_new_ident(3))
-
-    for x in 0..sorted_bps.len {
-        ident, y := get_new_ident(x)
-        bp := sorted_bps[x]
-        if y != 0 {
-            println("${bp.key} -> ${ident}")
-            compressed.replace(bp.key, ident)
-        } else {
-            break
-        }
-    }
-
-    println(compressed)
-
+    orig_len := f64(original.len)
+    comp_len := f64(compressed.len)
+    percent := (comp_len/orig_len) * 100.0
+    println("total compressed percentage: ${compressed.len}/${original.len} => ${percent}%")
+    println("before: ${original}\nafter: ${compressed}")
     return
 }
