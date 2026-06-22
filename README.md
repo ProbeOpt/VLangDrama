@@ -8,3 +8,4 @@
 
 - I even implemented `BPE` (using v-lang) in less then an 40min, It took me 1hr + ChatGpt to implement in `Odin`.
 - I dont like TOP-LEVEL STATEMENTS, they are mumbly-jumbly.
+- Http lib is very awsome, and http get/post are easier then python3. God! I love v-lang.
