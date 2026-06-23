@@ -1,13 +1,21 @@
 // lets try to implement `curl` in v-lang as `vurl`.
 import net.http
-import json
+
+fn usage(name string) {
+    println("Usage: ${name} <url> [OPTIONS]")
+    println("[OPTIONS]:")
+    println("\t--headers (currently non functional.)")
+    println("\t--body (currently non functional.)")
+}
 
 fn main() {
-    mut headers := http.Header{}
-    headers.set('Content-Type', 'application/json')
-
-    body := json.stringify({'key': 'value'})
-    resp := http.post('https://api.example.com/data', body, headers)
-
-    println(resp.str())
+    url := arguments()[1] or {
+        usage(arguments()[0])
+        return
+    }
+    resp := http.get(url) or {
+        println('Error: ${err}')
+        return
+    }
+    println("GOT HTML: ${resp.body}")
 }
