@@ -1,0 +1,211 @@
+{
+  "the": {
+    "quick": 12.5,
+    "lazy": 12.5,
+    "next": 12.5,
+    "previous": 12.5,
+    "training": 25.0,
+    "model": 25.0
+  },
+  "quick": {
+    "brown": 100.0
+  },
+  "brown": {
+    "fox": 100.0
+  },
+  "fox": {
+    "jumps": 100.0
+  },
+  "jumps": {
+    "over": 100.0
+  },
+  "over": {
+    "the": 100.0
+  },
+  "lazy": {
+    "dog": 100.0
+  },
+  "dog": {
+    ".": 100.0
+  },
+  ".": {
+    "this": 28.57142857142857,
+    "markov": 14.285714285714285,
+    "in": 14.285714285714285,
+    "hello": 14.285714285714285,
+    "let's": 14.285714285714285,
+    "the": 14.285714285714285
+  },
+  "this": {
+    "is": 100.0
+  },
+  "is": {
+    "a": 50.0,
+    "fun": 50.0
+  },
+  "a": {
+    "sample": 33.33333333333333,
+    "markov": 33.33333333333333,
+    "simple": 33.33333333333333
+  },
+  "sample": {
+    "text": 100.0
+  },
+  "text": {
+    "for": 50.0,
+    "that": 50.0
+  },
+  "for": {
+    "training": 50.0,
+    "predicting": 50.0
+  },
+  "training": {
+    "a": 33.33333333333333,
+    "data": 66.66666666666666
+  },
+  "markov": {
+    "chain": 50.0,
+    "chains": 50.0
+  },
+  "chain": {
+    "model": 100.0
+  },
+  "model": {
+    ".": 25.0,
+    ",": 25.0,
+    "generates": 25.0,
+    "learns": 25.0
+  },
+  "chains": {
+    "are": 100.0
+  },
+  "are": {
+    "useful": 100.0
+  },
+  "useful": {
+    "for": 100.0
+  },
+  "predicting": {
+    "the": 100.0
+  },
+  "next": {
+    "token": 33.33333333333333,
+    ".": 33.33333333333333,
+    "words": 33.33333333333333
+  },
+  "token": {
+    "based": 100.0
+  },
+  "based": {
+    "on": 100.0
+  },
+  "on": {
+    "the": 100.0
+  },
+  "previous": {
+    "one": 100.0
+  },
+  "one": {
+    ".": 100.0
+  },
+  "in": {
+    "a": 100.0
+  },
+  "simple": {
+    "language": 100.0
+  },
+  "language": {
+    "model": 50.0,
+    ".": 50.0
+  },
+  ",": {
+    "we": 100.0
+  },
+  "we": {
+    "can": 100.0
+  },
+  "can": {
+    "use": 100.0
+  },
+  "use": {
+    "word": 100.0
+  },
+  "word": {
+    "transitions": 100.0
+  },
+  "transitions": {
+    "to": 100.0
+  },
+  "to": {
+    "generate": 50.0,
+    "predict": 50.0
+  },
+  "generate": {
+    "new": 100.0
+  },
+  "new": {
+    "text": 100.0
+  },
+  "that": {
+    "resembles": 100.0
+  },
+  "resembles": {
+    "the": 100.0
+  },
+  "data": {
+    ".": 50.0,
+    "to": 50.0
+  },
+  "hello": {
+    "world": 100.0
+  },
+  "world": {
+    "from": 100.0
+  },
+  "from": {
+    "odin": 50.0,
+    "the": 50.0
+  },
+  "odin": {
+    "programming": 100.0
+  },
+  "programming": {
+    "language": 100.0
+  },
+  "fun": {
+    "and": 100.0
+  },
+  "and": {
+    "educational": 100.0
+  },
+  "educational": {
+    ".": 100.0
+  },
+  "let's": {
+    "see": 100.0
+  },
+  "see": {
+    "what": 100.0
+  },
+  "what": {
+    "the": 100.0
+  },
+  "generates": {
+    "next": 100.0
+  },
+  "learns": {
+    "patterns": 100.0
+  },
+  "patterns": {
+    "from": 100.0
+  },
+  "predict": {
+    "likely": 100.0
+  },
+  "likely": {
+    "next": 100.0
+  },
+  "words": {
+    ".": 100.0
+  }
+}
